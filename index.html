@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+function playRound(userSelect, computerSelect) {
+  if(
+    (userSelect === 'Rock' && computerSelect === 'Scissors') || 
+    (userSelect === 'Paper' && computerSelect === 'Rock') || 
+    (userSelect === 'Scissors' && computerSelect === 'Paper')
+  ) {
+    message = `User wins!`;
+  } else if (
+    (userSelect === 'Scissors' && computerSelect === 'Rock') || 
+    (userSelect === 'Rock' && computerSelect === 'Paper') || 
+    (userSelect === 'Paper' && computerSelect === 'Scissors')
+  ) {
+    message = `Computer wins!`;
+  } else if 
+    (userSelect === computerSelect) {
+      message = `You tie!`;
+  } else {
+      message = 'Please enter valid input!';
+  }
+  return message;
+}
+
+function getPlay() {
+  var number = Math.floor(Math.random() * 3);
+  if (number === 0) {
+      return 'Rock';
+  } else if (number === 1) {
+      return 'Paper';
+  } else if (number === 2) { 
+      return 'Scissors';
+  }
+}
+
+function logGameScore(apple, orange) {
+  console.log(`You have ${apple}, computer has ${orange}.`)
+}
+
+function runGame() {
+  let userScore = 0, computerScore = 0;
+  for (let i = 0; i < 5; i++) {
+    var userSelect = getPlay();
+    var computerSelect = getPlay(); 
+    var gameResult = playRound(userSelect, computerSelect); 
+    if (gameResult === 'User wins!') {
+      userScore++;
+    } else if (gameResult === 'Computer wins!') {
+      computerScore++;
+    };
+    console.log(gameResult);
+    logGameScore(userScore, computerScore);
+  }
+  console.log(`The game is over. You had ${userScore}, computer had ${computerScore}.`);
+}      
+
+runGame();
+</script>
+
+</body>
+</html>
